@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace backend.Modelo;
+﻿namespace backend.Modelo;
 
 public class Posicion
 {

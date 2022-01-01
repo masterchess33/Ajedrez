@@ -1,15 +1,17 @@
-﻿namespace JuegoAjedrez.modelo;
+﻿namespace backend.Modelo.Piezas;
 
-public class Caballo : IPieza
+public class Rey : IPieza
 {
     private Posicion _posicion;
     private Color _color;
+    private bool _primerMovimiento;
     private bool _objetivo;
 
-    public Caballo(Posicion posicion, Color color)
+    public Rey(Posicion posicion, Color color, bool primerMovimiento = true)
     {
         _posicion = posicion;
         _color = color;
+        _primerMovimiento = primerMovimiento;
         _objetivo = false;
     }
 
@@ -21,12 +23,20 @@ public class Caballo : IPieza
     public List<Posicion?>? Movimientos()
     {
         List<Posicion?>? mov = new List<Posicion?>();
-        
-        
+
+        /*mov.Add(Posicion.CrearPosicionValida(_posicion.X + 1, _posicion.Y));
+        mov.Add(Posicion.CrearPosicionValida(_posicion.X + 1, _posicion.Y + 1));
+        mov.Add(Posicion.CrearPosicionValida(_posicion.X + 1, _posicion.Y - 1));
+        mov.Add(Posicion.CrearPosicionValida(_posicion.X - 1, _posicion.Y - 1));
+        mov.Add(Posicion.CrearPosicionValida(_posicion.X - 1, _posicion.Y + 1));
+        mov.Add(Posicion.CrearPosicionValida(_posicion.X - 1, _posicion.Y));
+        mov.Add(Posicion.CrearPosicionValida(_posicion.X, _posicion.Y - 1));
+        mov.Add(Posicion.CrearPosicionValida(_posicion.X, _posicion.Y + 1));*/
+
         mov.RemoveAll(item => item == null);
         return mov;
     }
-    
+
     public Color CualColor()
     {
         return _color;
@@ -39,13 +49,14 @@ public class Caballo : IPieza
 
     public string TipoPiezaUniCode()
     {
+        
         if ( _color== Color.Blanco)
         {
-            return "\u2658";
+            return "\u2654";
         }
         else
         {
-            return "\u265E";
+            return "\u265A";
         }
     }
 
@@ -59,6 +70,12 @@ public class Caballo : IPieza
     {
         get => _color;
         set => _color = value;
+    }
+
+    public bool PrimerMovimiento
+    {
+        get => _primerMovimiento;
+        set => _primerMovimiento = value;
     }
 
     public bool Objetivo

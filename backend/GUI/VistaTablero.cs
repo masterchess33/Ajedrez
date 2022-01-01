@@ -1,12 +1,12 @@
 ﻿using System.Text;
-using JuegoAjedrez.modelo;
+using backend.Modelo;
 
-namespace JuegoAjedrez.GUI;
+namespace backend.GUI;
 
 public class VistaTablero
 {
 
-    public void mostrarTablero(Tablero tablero)
+    public void MostrarTablero(Tablero tablero)
     {
         Console.OutputEncoding = Encoding.UTF8;
         for (int i = 0; i < 8; i++)
@@ -28,11 +28,8 @@ public class VistaTablero
         Console.WriteLine("   A   B   C   D   E   f   G   H");
     }
 
-    public void mostrarMovimientos(List<Posicion> posMov,Tablero tablero)
+    public void MostrarMovimientos(List<Posicion> posMov,Tablero tablero)
     {
-        for (int i = 0; i < posMov.Count; i++)
-        {
-            tablero.Mesa[posMov[i].X, posMov[i].Y] = new PosibleMovimiento();
-        }
+        
     }
 }

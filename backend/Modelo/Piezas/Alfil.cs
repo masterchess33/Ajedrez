@@ -1,17 +1,15 @@
-﻿namespace JuegoAjedrez.modelo;
+﻿namespace backend.Modelo.Piezas;
 
-public class Rey : IPieza
+public class Alfil : IPieza
 {
     private Posicion _posicion;
     private Color _color;
-    private bool _primerMovimiento;
     private bool _objetivo;
 
-    public Rey(Posicion posicion, Color color, bool primerMovimiento = true)
+    public Alfil(Posicion posicion, Color color)
     {
         _posicion = posicion;
         _color = color;
-        _primerMovimiento = primerMovimiento;
         _objetivo = false;
     }
 
@@ -23,20 +21,19 @@ public class Rey : IPieza
     public List<Posicion?>? Movimientos()
     {
         List<Posicion?>? mov = new List<Posicion?>();
-
-        /*mov.Add(Posicion.CrearPosicionValida(_posicion.X + 1, _posicion.Y));
-        mov.Add(Posicion.CrearPosicionValida(_posicion.X + 1, _posicion.Y + 1));
-        mov.Add(Posicion.CrearPosicionValida(_posicion.X + 1, _posicion.Y - 1));
-        mov.Add(Posicion.CrearPosicionValida(_posicion.X - 1, _posicion.Y - 1));
-        mov.Add(Posicion.CrearPosicionValida(_posicion.X - 1, _posicion.Y + 1));
-        mov.Add(Posicion.CrearPosicionValida(_posicion.X - 1, _posicion.Y));
-        mov.Add(Posicion.CrearPosicionValida(_posicion.X, _posicion.Y - 1));
-        mov.Add(Posicion.CrearPosicionValida(_posicion.X, _posicion.Y + 1));*/
-
+        
+        for (int i = 1; i < 8; i++)
+        {
+            /*mov.Add(Posicion.CrearPosicionValida(_posicion.X+i,_posicion.Y+i));
+            mov.Add(Posicion.CrearPosicionValida(_posicion.X+i,_posicion.Y-i));
+            mov.Add(Posicion.CrearPosicionValida(_posicion.X-i,_posicion.Y+i));
+            mov.Add(Posicion.CrearPosicionValida(_posicion.X-i,_posicion.Y-i));*/
+        }
+        
         mov.RemoveAll(item => item == null);
         return mov;
     }
-
+    
     public Color CualColor()
     {
         return _color;
@@ -49,14 +46,13 @@ public class Rey : IPieza
 
     public string TipoPiezaUniCode()
     {
-        
         if ( _color== Color.Blanco)
         {
-            return "\u2654";
+            return "\u2657";
         }
         else
         {
-            return "\u265A";
+            return "\u265D";
         }
     }
 
@@ -65,17 +61,11 @@ public class Rey : IPieza
         get => _posicion;
         set => _posicion = value ?? throw new ArgumentNullException(nameof(value));
     }
-
+    
     public Color Color
     {
         get => _color;
         set => _color = value;
-    }
-
-    public bool PrimerMovimiento
-    {
-        get => _primerMovimiento;
-        set => _primerMovimiento = value;
     }
 
     public bool Objetivo

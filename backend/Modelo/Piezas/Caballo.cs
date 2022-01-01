@@ -1,12 +1,12 @@
-﻿namespace JuegoAjedrez.modelo;
+﻿namespace backend.Modelo.Piezas;
 
-public class Alfil : IPieza
+public class Caballo : IPieza
 {
     private Posicion _posicion;
     private Color _color;
     private bool _objetivo;
 
-    public Alfil(Posicion posicion, Color color)
+    public Caballo(Posicion posicion, Color color)
     {
         _posicion = posicion;
         _color = color;
@@ -22,13 +22,6 @@ public class Alfil : IPieza
     {
         List<Posicion?>? mov = new List<Posicion?>();
         
-        for (int i = 1; i < 8; i++)
-        {
-            /*mov.Add(Posicion.CrearPosicionValida(_posicion.X+i,_posicion.Y+i));
-            mov.Add(Posicion.CrearPosicionValida(_posicion.X+i,_posicion.Y-i));
-            mov.Add(Posicion.CrearPosicionValida(_posicion.X-i,_posicion.Y+i));
-            mov.Add(Posicion.CrearPosicionValida(_posicion.X-i,_posicion.Y-i));*/
-        }
         
         mov.RemoveAll(item => item == null);
         return mov;
@@ -48,11 +41,11 @@ public class Alfil : IPieza
     {
         if ( _color== Color.Blanco)
         {
-            return "\u2657";
+            return "\u2658";
         }
         else
         {
-            return "\u265D";
+            return "\u265E";
         }
     }
 
@@ -61,7 +54,7 @@ public class Alfil : IPieza
         get => _posicion;
         set => _posicion = value ?? throw new ArgumentNullException(nameof(value));
     }
-    
+
     public Color Color
     {
         get => _color;

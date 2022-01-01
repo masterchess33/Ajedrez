@@ -1,6 +1,4 @@
-﻿using System.Transactions;
-
-namespace JuegoAjedrez.modelo;
+﻿namespace backend.Modelo.Piezas;
 
 public class Peon: IPieza
 {

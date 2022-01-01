@@ -1,4 +1,4 @@
-﻿namespace backend.Modelo;
+﻿namespace JuegoAjedrez.modelo;
 
 public enum Color
 {

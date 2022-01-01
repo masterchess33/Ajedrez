@@ -1,4 +1,4 @@
-﻿namespace JuegoAjedrez.modelo;
+﻿namespace backend.Modelo.Piezas;
 
 public interface IPieza
 {

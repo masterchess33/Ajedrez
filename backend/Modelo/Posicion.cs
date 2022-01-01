@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace JuegoAjedrez.modelo;
+﻿namespace backend.Modelo;
 
 public class Posicion
 {

@@ -1,4 +1,6 @@
-﻿namespace JuegoAjedrez.modelo;
+﻿using backend.Modelo.Piezas;
+
+namespace backend.Modelo;
 
 public class Tablero
 {

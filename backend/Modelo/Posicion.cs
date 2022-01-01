@@ -12,7 +12,7 @@ public class Posicion
         Y = y;
     }
 
-    public static bool CrearPosicionValida(int x, int y)
+    public static bool PosicionValida(int x, int y)
     {
         try
         {
@@ -25,6 +25,31 @@ public class Posicion
         }
     }
 
+    public static char? Letra(int numero)
+    {
+        switch (numero)
+        {
+            case 0:
+                return 'A';
+            case 1:
+                return 'B';
+            case 2:
+                return 'C';
+            case 3:
+                return 'D';
+            case 4:
+                return 'E';
+            case 5:
+                return 'F';
+            case 6:
+                return 'G';
+            case 7:
+                return 'H';
+            default:
+                return null;
+        }
+    }
+    
     public int X
     {
         get => _x;

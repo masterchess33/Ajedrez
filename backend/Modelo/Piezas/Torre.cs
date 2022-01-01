@@ -20,7 +20,7 @@ public class Torre : IPieza
         _posicion = posicion;
     }
     
-    public List<Posicion?>? Movimientos()
+    public List<Posicion?>? Movimientos(IPieza[,] tablero)
     {
         List<Posicion?>? mov = new List<Posicion?>();
         for (int i = 1; i < 8; i++)

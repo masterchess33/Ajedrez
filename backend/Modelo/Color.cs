@@ -3,6 +3,5 @@
 public enum Color
 {
     Blanco,
-    Negro,
-    SinColor
+    Negro
 }

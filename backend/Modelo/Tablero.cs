@@ -7,18 +7,18 @@ public class Tablero
     private IPieza[,] _mesa;
     public Tablero(bool jugador)
     {
-        Color jugador1 = Color.Blanco;
-        Color jugador2 = Color.Negro;
-        bool direccionjugador1 = false;
-        bool direccionjugador2 = true; 
+        Color jugador1 = Color.Negro;
+        Color jugador2 = Color.Blanco;
+        bool direccionjugador1 = true;
+        bool direccionjugador2 = false; 
         
         if (!jugador)
         {
             Console.WriteLine("hola");
-            jugador1 = Color.Negro;
-            jugador2 = Color.Blanco;
-            direccionjugador1 = true;
-            direccionjugador2 = false;
+            jugador1 = Color.Blanco;
+            jugador2 = Color.Negro;
+            direccionjugador1 = false;
+            direccionjugador2 = true;
         }
         
         // Se inicializa el tablero
@@ -56,79 +56,6 @@ public class Tablero
         _mesa[4, 7] = new Rey(new Posicion(4, 7), jugador1);
         _mesa[4, 0] = new Rey(new Posicion(4, 0), jugador2);
 
-    }
-    
-    public List<Posicion?>? MovimientosPosibles(IPieza pieza)
-    {
-        switch (pieza)
-        {
-            case Caballo caballo:
-                return MovimientoCaballo((Caballo) pieza);
-            case Torre torre:
-                break;
-        }
-
-        return new List<Posicion?>();
-    }
-
-    private List<Posicion?> MovimientoCaballo(Caballo caballo)
-    {
-        List<Posicion?>? mov = new List<Posicion?>();
-        if (Posicion.CrearPosicionValida(caballo.Posicion.X+2,caballo.Posicion.Y+1))
-            mov.Add(_mesa[caballo.Posicion.X+2,caballo.Posicion.Y+1]==null || 
-                    _mesa[caballo.Posicion.X+2,caballo.Posicion.Y+1].CualColor()!= caballo.CualColor() ? 
-                new Posicion(caballo.Posicion.X+2,caballo.Posicion.Y+1) : null);
-        
-        if (Posicion.CrearPosicionValida(caballo.Posicion.X+2,caballo.Posicion.Y-1))
-            mov.Add(_mesa[caballo.Posicion.X+2,caballo.Posicion.Y-1]==null || 
-                    _mesa[caballo.Posicion.X+2,caballo.Posicion.Y-1].CualColor()!= caballo.CualColor() ? 
-                new Posicion(caballo.Posicion.X+2,caballo.Posicion.Y-1) : null);
-        
-        if (Posicion.CrearPosicionValida(caballo.Posicion.X-2,caballo.Posicion.Y+1))
-            mov.Add(_mesa[caballo.Posicion.X-2,caballo.Posicion.Y+1]==null || 
-                    _mesa[caballo.Posicion.X-2,caballo.Posicion.Y+1].CualColor()!= caballo.CualColor() ? 
-            new Posicion(caballo.Posicion.X-2,caballo.Posicion.Y+1) : null);
-        
-        if (Posicion.CrearPosicionValida(caballo.Posicion.X-2,caballo.Posicion.Y-1))
-            mov.Add(_mesa[caballo.Posicion.X-2,caballo.Posicion.Y-1]==null || 
-                    _mesa[caballo.Posicion.X-2,caballo.Posicion.Y-1].CualColor()!= caballo.CualColor() ? 
-            new Posicion(caballo.Posicion.X-2,caballo.Posicion.Y-1) : null);
-        
-        if (Posicion.CrearPosicionValida(caballo.Posicion.X-1,caballo.Posicion.Y+2))
-            mov.Add(_mesa[caballo.Posicion.X-1,caballo.Posicion.Y+2]==null || 
-                    _mesa[caballo.Posicion.X-1,caballo.Posicion.Y+2].CualColor()!= caballo.CualColor() ? 
-            new Posicion(caballo.Posicion.X-1,caballo.Posicion.Y+2) : null);
-        
-        if (Posicion.CrearPosicionValida(caballo.Posicion.X+1,caballo.Posicion.Y+2))
-            mov.Add(_mesa[caballo.Posicion.X+1,caballo.Posicion.Y+2]==null || 
-                    _mesa[caballo.Posicion.X+1,caballo.Posicion.Y+2].CualColor()!= caballo.CualColor() ? 
-            new Posicion(caballo.Posicion.X+1,caballo.Posicion.Y+2) : null);
-        
-        if (Posicion.CrearPosicionValida(caballo.Posicion.X-1,caballo.Posicion.Y-2)) 
-            mov.Add(_mesa[caballo.Posicion.X-1,caballo.Posicion.Y-2]==null || 
-                _mesa[caballo.Posicion.X-1,caballo.Posicion.Y-2].CualColor()!= caballo.CualColor() ? 
-            new Posicion(caballo.Posicion.X-1,caballo.Posicion.Y-2) : null);
-        
-        if (Posicion.CrearPosicionValida(caballo.Posicion.X+1,caballo.Posicion.Y-2))
-            mov.Add(_mesa[caballo.Posicion.X+1,caballo.Posicion.Y-2]==null || 
-                    _mesa[caballo.Posicion.X+1,caballo.Posicion.Y-2].CualColor()!= caballo.CualColor() ? 
-            new Posicion(caballo.Posicion.X+1,caballo.Posicion.Y-2) : null);
-        
-        mov.RemoveAll(item => item == null);
-        return mov;
-    }
-
-    private List<Posicion?> MovimientoTorre(Torre torre)
-    {
-        List<Posicion?>? mov = new List<Posicion?>();
-
-        for (int i = torre.Posicion.X; i < 1; i++)
-        {
-            
-        }
-        
-        mov.RemoveAll(item => item == null);
-        return mov;
     }
 
     public IPieza[,] Mesa

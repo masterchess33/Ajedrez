@@ -4,7 +4,7 @@ public interface IPieza
 {
     public void Mover(Posicion posicion);
 
-    public List<Posicion?>? Movimientos();
+    public List<Posicion?>? Movimientos(IPieza[,] tablero);
 
     public String TipoPiezaUniCode();
 

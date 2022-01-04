@@ -18,7 +18,7 @@ public class Alfil : IPieza
         _posicion = posicion;
     }
 
-    public List<Posicion?>? Movimientos(IPieza[,] tablero)
+    public List<Posicion?> Movimientos(IPieza[,] tablero)
     {
         List<Posicion?>? mov = new List<Posicion?>();
         

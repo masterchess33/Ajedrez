@@ -5,14 +5,12 @@ public class Torre : IPieza
     private Posicion _posicion;
     private Color _color;
     private bool _primerMovimiento;
-    private bool _objetivo;
 
     public Torre(Posicion posicion, Color color, bool primerMovimiento = true)
     {
         _color = color;
         _posicion = posicion;
         _primerMovimiento = primerMovimiento;
-        _objetivo = false;
     }
 
     public void Mover(Posicion posicion)
@@ -20,29 +18,93 @@ public class Torre : IPieza
         _posicion = posicion;
     }
     
-    public List<Posicion?>? Movimientos(IPieza[,] tablero)
+    public List<Posicion?> Movimientos(IPieza[,] tablero)
     {
-        List<Posicion?>? mov = new List<Posicion?>();
+        List<Posicion?> mov = new List<Posicion?>();
+        
+        // Se ejecutan 4 for loops para verificar movimientos posibles en las 4 direcciones.
         for (int i = 1; i < 8; i++)
         {
-            /*mov.Add(Posicion.CrearPosicionValida(_posicion.X + i, _posicion.Y));
-            mov.Add(Posicion.CrearPosicionValida(_posicion.X - i, _posicion.Y));
-            mov.Add(Posicion.CrearPosicionValida(_posicion.X, _posicion.Y + i));
-            mov.Add(Posicion.CrearPosicionValida(_posicion.X, _posicion.Y - i));*/
+            if (Posicion.PosicionValida(_posicion.X-i,_posicion.Y))
+            {
+                if (tablero[_posicion.X-i,_posicion.Y]==null)
+                {
+                    mov.Add(new Posicion(_posicion.X-i,_posicion.Y));
+                }
+                else if(tablero[_posicion.X-i,_posicion.Y].CualColor() != CualColor())
+                {
+                    mov.Add(new Posicion(_posicion.X-i,_posicion.Y));
+                    break;
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
-
-        mov.RemoveAll(item => item == null);
+        for (int i = 1; i < 8; i++)
+        {
+            if (Posicion.PosicionValida(_posicion.X+i,_posicion.Y))
+            {
+                if (tablero[_posicion.X+i,_posicion.Y]==null)
+                {
+                    mov.Add(new Posicion(_posicion.X+i,_posicion.Y));
+                }
+                else if(tablero[_posicion.X+i,_posicion.Y].CualColor() != CualColor())
+                {
+                    mov.Add(new Posicion(_posicion.X+i,_posicion.Y));
+                    break;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+        for (int i = 1; i < 8; i++)
+        {
+            if (Posicion.PosicionValida(_posicion.X,_posicion.Y+i))
+            {
+                if (tablero[_posicion.X,_posicion.Y+i]==null)
+                {
+                    mov.Add(new Posicion(_posicion.X,_posicion.Y+i));
+                }
+                else if(tablero[_posicion.X,_posicion.Y+i].CualColor() != CualColor())
+                {
+                    mov.Add(new Posicion(_posicion.X,_posicion.Y+i));
+                    break;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+        for (int i = 1; i < 8; i++)
+        {
+            if (Posicion.PosicionValida(_posicion.X,_posicion.Y-i))
+            {
+                if (tablero[_posicion.X,_posicion.Y-i]==null)
+                {
+                    mov.Add(new Posicion(_posicion.X,_posicion.Y-i));
+                }
+                else if(tablero[_posicion.X,_posicion.Y-i].CualColor() != CualColor())
+                {
+                    mov.Add(new Posicion(_posicion.X,_posicion.Y-i));
+                    break;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
         return mov;
     }
     
     public Color CualColor()
     {
         return _color;
-    }
-
-    public bool EsObjetivo()
-    {
-        return _objetivo;
     }
 
     public string TipoPiezaUniCode()
@@ -73,11 +135,5 @@ public class Torre : IPieza
     {
         get => _color;
         set => _color = value;
-    }
-
-    public bool Objetivo
-    {
-        get => _objetivo;
-        set => _objetivo = value;
     }
 }

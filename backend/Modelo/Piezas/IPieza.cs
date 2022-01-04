@@ -8,5 +8,5 @@ public interface IPieza
 
     public String TipoPiezaUniCode();
 
-    public Color CualColor();
+    public Color ColorPieza();
 }

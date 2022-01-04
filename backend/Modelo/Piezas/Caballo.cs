@@ -19,57 +19,66 @@ public class Caballo : IPieza
     public List<Posicion?> Movimientos(IPieza[,] tablero)
     {
         List<Posicion?> mov = new List<Posicion?>();
-        if (Posicion.PosicionValida(_posicion.X+2,_posicion.Y+1))
-            mov.Add(tablero[Posicion.X+2,Posicion.Y+1]== null || tablero[Posicion.X+2,Posicion.Y+1].CualColor()!= CualColor() ? 
-                new Posicion(Posicion.X+2,Posicion.Y+1) : null);
-        
-        if (Posicion.PosicionValida(Posicion.X+2,Posicion.Y-1))
-            mov.Add(tablero[Posicion.X+2,Posicion.Y-1]==null || 
-                    tablero[Posicion.X+2,Posicion.Y-1].CualColor()!= CualColor() ? 
-                new Posicion(Posicion.X+2,Posicion.Y-1) : null);
-        
-        if (Posicion.PosicionValida(Posicion.X-2,Posicion.Y+1))
-            mov.Add(tablero[Posicion.X-2,Posicion.Y+1]==null || 
-                    tablero[Posicion.X-2,Posicion.Y+1].CualColor()!= CualColor() ? 
-            new Posicion(Posicion.X-2,Posicion.Y+1) : null);
-        
-        if (Posicion.PosicionValida(Posicion.X-2,Posicion.Y-1))
-            mov.Add(tablero[Posicion.X-2,Posicion.Y-1]==null || 
-                    tablero[Posicion.X-2,Posicion.Y-1].CualColor()!= CualColor() ? 
-            new Posicion(Posicion.X-2,Posicion.Y-1) : null);
-        
-        if (Posicion.PosicionValida(Posicion.X-1,Posicion.Y+2))
-            mov.Add(tablero[Posicion.X-1,Posicion.Y+2]==null || 
-                    tablero[Posicion.X-1,Posicion.Y+2].CualColor()!= CualColor() ? 
-            new Posicion(Posicion.X-1,Posicion.Y+2) : null);
-        
-        if (Posicion.PosicionValida(Posicion.X+1,Posicion.Y+2))
-            mov.Add(tablero[Posicion.X+1,Posicion.Y+2]==null || 
-                    tablero[Posicion.X+1,Posicion.Y+2].CualColor()!= CualColor() ? 
-            new Posicion(Posicion.X+1,Posicion.Y+2) : null);
-        
-        if (Posicion.PosicionValida(Posicion.X-1,Posicion.Y-2)) 
-            mov.Add(tablero[Posicion.X-1,Posicion.Y-2]==null || 
-                tablero[Posicion.X-1,Posicion.Y-2].CualColor()!= CualColor() ? 
-            new Posicion(Posicion.X-1,Posicion.Y-2) : null);
-        
-        if (Posicion.PosicionValida(Posicion.X+1,Posicion.Y-2))
-            mov.Add(tablero[Posicion.X+1,Posicion.Y-2]==null || 
-                    tablero[Posicion.X+1,Posicion.Y-2].CualColor()!= CualColor() ? 
-            new Posicion(Posicion.X+1,Posicion.Y-2) : null);
-        
+        if (Posicion.PosicionValida(_posicion.X + 2, _posicion.Y + 1))
+            mov.Add(tablero[Posicion.X + 2, Posicion.Y + 1] == null ||
+                    tablero[Posicion.X + 2, Posicion.Y + 1].ColorPieza() != ColorPieza()
+                ? new Posicion(Posicion.X + 2, Posicion.Y + 1)
+                : null);
+
+        if (Posicion.PosicionValida(Posicion.X + 2, Posicion.Y - 1))
+            mov.Add(tablero[Posicion.X + 2, Posicion.Y - 1] == null ||
+                    tablero[Posicion.X + 2, Posicion.Y - 1].ColorPieza() != ColorPieza()
+                ? new Posicion(Posicion.X + 2, Posicion.Y - 1)
+                : null);
+
+        if (Posicion.PosicionValida(Posicion.X - 2, Posicion.Y + 1))
+            mov.Add(tablero[Posicion.X - 2, Posicion.Y + 1] == null ||
+                    tablero[Posicion.X - 2, Posicion.Y + 1].ColorPieza() != ColorPieza()
+                ? new Posicion(Posicion.X - 2, Posicion.Y + 1)
+                : null);
+
+        if (Posicion.PosicionValida(Posicion.X - 2, Posicion.Y - 1))
+            mov.Add(tablero[Posicion.X - 2, Posicion.Y - 1] == null ||
+                    tablero[Posicion.X - 2, Posicion.Y - 1].ColorPieza() != ColorPieza()
+                ? new Posicion(Posicion.X - 2, Posicion.Y - 1)
+                : null);
+
+        if (Posicion.PosicionValida(Posicion.X - 1, Posicion.Y + 2))
+            mov.Add(tablero[Posicion.X - 1, Posicion.Y + 2] == null ||
+                    tablero[Posicion.X - 1, Posicion.Y + 2].ColorPieza() != ColorPieza()
+                ? new Posicion(Posicion.X - 1, Posicion.Y + 2)
+                : null);
+
+        if (Posicion.PosicionValida(Posicion.X + 1, Posicion.Y + 2))
+            mov.Add(tablero[Posicion.X + 1, Posicion.Y + 2] == null ||
+                    tablero[Posicion.X + 1, Posicion.Y + 2].ColorPieza() != ColorPieza()
+                ? new Posicion(Posicion.X + 1, Posicion.Y + 2)
+                : null);
+
+        if (Posicion.PosicionValida(Posicion.X - 1, Posicion.Y - 2))
+            mov.Add(tablero[Posicion.X - 1, Posicion.Y - 2] == null ||
+                    tablero[Posicion.X - 1, Posicion.Y - 2].ColorPieza() != ColorPieza()
+                ? new Posicion(Posicion.X - 1, Posicion.Y - 2)
+                : null);
+
+        if (Posicion.PosicionValida(Posicion.X + 1, Posicion.Y - 2))
+            mov.Add(tablero[Posicion.X + 1, Posicion.Y - 2] == null ||
+                    tablero[Posicion.X + 1, Posicion.Y - 2].ColorPieza() != ColorPieza()
+                ? new Posicion(Posicion.X + 1, Posicion.Y - 2)
+                : null);
+
         mov.RemoveAll(item => item == null);
         return mov;
     }
-    
-    public Color CualColor()
+
+    public Color ColorPieza()
     {
         return _color;
     }
 
     public string TipoPiezaUniCode()
     {
-        if ( _color== Color.Blanco)
+        if (_color == Color.Blanco)
         {
             return "\u2658";
         }

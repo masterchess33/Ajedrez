@@ -5,14 +5,12 @@ public class Rey : IPieza
     private Posicion _posicion;
     private Color _color;
     private bool _primerMovimiento;
-    private bool _objetivo;
 
     public Rey(Posicion posicion, Color color, bool primerMovimiento = true)
     {
         _posicion = posicion;
         _color = color;
         _primerMovimiento = primerMovimiento;
-        _objetivo = false;
     }
 
     public void Mover(Posicion posicion)
@@ -37,14 +35,9 @@ public class Rey : IPieza
         return mov;
     }
 
-    public Color CualColor()
+    public Color ColorPieza()
     {
         return _color;
-    }
-
-    public bool EsObjetivo()
-    {
-        return _objetivo;
     }
 
     public string TipoPiezaUniCode()
@@ -76,11 +69,5 @@ public class Rey : IPieza
     {
         get => _primerMovimiento;
         set => _primerMovimiento = value;
-    }
-
-    public bool Objetivo
-    {
-        get => _objetivo;
-        set => _objetivo = value;
     }
 }

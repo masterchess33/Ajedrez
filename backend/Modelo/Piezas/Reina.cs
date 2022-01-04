@@ -4,13 +4,11 @@ public class Reina : IPieza
 {
     private Posicion _posicion;
     private Color _color;
-    private bool _objetivo;
 
     public Reina(Posicion posicion, Color color)
     {
         _posicion = posicion;
         _color = color;
-        _objetivo = false;
     }
 
     public void Mover(Posicion posicion)
@@ -51,14 +49,9 @@ public class Reina : IPieza
         }
     }
 
-    public Color CualColor()
+    public Color ColorPieza()
     {
         return _color;
-    }
-
-    public bool EsObjetivo()
-    {
-        return _objetivo;
     }
 
     public Posicion Posicion
@@ -71,11 +64,5 @@ public class Reina : IPieza
     {
         get => _color;
         set => _color = value;
-    }
-
-    public bool Objetivo
-    {
-        get => _objetivo;
-        set => _objetivo = value;
     }
 }

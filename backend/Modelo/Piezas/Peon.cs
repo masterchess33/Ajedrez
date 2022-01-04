@@ -1,20 +1,18 @@
 ﻿namespace backend.Modelo.Piezas;
 
-public class Peon: IPieza
+public class Peon : IPieza
 {
     private Posicion _posicion;
     private Color _color;
     private bool _primerMovimiento;
     private bool _direccion;
-    private bool _objetivo;
 
-    public Peon(Posicion posicion, Color color, bool direccion, bool primerMovimiento = true)
+    public Peon(Posicion posicion, Color color, bool direccion)
     {
         _posicion = posicion;
         _color = color;
         _direccion = direccion;
-        _primerMovimiento = primerMovimiento;
-        _objetivo = false;
+        _primerMovimiento = true;
     }
 
     public void Mover(Posicion posicion)
@@ -23,45 +21,146 @@ public class Peon: IPieza
         {
             _primerMovimiento = false;
         }
+
         _posicion = posicion;
     }
 
     public List<Posicion?> Movimientos(IPieza[,] tablero)
     {
-        List<Posicion?>? mov = new List<Posicion?>();
-        
-        /*if (_primerMovimiento)
+        List<Posicion?> mov = new List<Posicion?>();
+
+        if (_primerMovimiento)
         {
             if (!_direccion)
             {
-                mov.Add(Posicion.CrearPosicionValida(_posicion.X, _posicion.Y - 2));
-                mov.Add(Posicion.CrearPosicionValida(_posicion.X, _posicion.Y - 1));
+                if (Posicion.PosicionValida(_posicion.X, _posicion.Y - 2) &&
+                    tablero[_posicion.X, _posicion.Y - 2] == null!)
+                {
+                    mov.Add(new Posicion(_posicion.X, _posicion.Y - 2));
+                }
+
+                if (Posicion.PosicionValida(_posicion.X, _posicion.Y - 1) &&
+                    tablero[_posicion.X, _posicion.Y - 1] == null!)
+                {
+                    mov.Add(new Posicion(_posicion.X, _posicion.Y - 1));
+                }
+                
+                // Se verifica si se puede comer una pieza en diagonal
+                if (Posicion.PosicionValida(_posicion.X + 1, _posicion.Y - 1) &&
+                    tablero[_posicion.X + 1, _posicion.Y - 1] != null!)
+                {
+                    mov.Add(tablero[_posicion.X + 1, _posicion.Y - 1].ColorPieza() != ColorPieza()
+                        ? new Posicion(_posicion.X + 1, _posicion.Y - 1)
+                        : null);
+                }
+
+                // Lo mismo en la otra esquina
+                if (Posicion.PosicionValida(_posicion.X - 1, _posicion.Y - 1) &&
+                    tablero[_posicion.X - 1, _posicion.Y - 1] != null!)
+                {
+                    mov.Add(tablero[_posicion.X - 1, _posicion.Y - 1].ColorPieza() != ColorPieza()
+                        ? new Posicion(_posicion.X - 1, _posicion.Y - 1)
+                        : null);
+                }
             }
             else
             {
-                mov.Add(Posicion.CrearPosicionValida(_posicion.X, _posicion.Y + 2));
-                mov.Add(Posicion.CrearPosicionValida(_posicion.X, _posicion.Y + 1));
+                if (Posicion.PosicionValida(_posicion.X, _posicion.Y + 2) &&
+                    tablero[_posicion.X, _posicion.Y + 2] == null!)
+                {
+                    mov.Add(new Posicion(_posicion.X, _posicion.Y + 2));
+                }
+
+                if (Posicion.PosicionValida(_posicion.X, _posicion.Y + 1) &&
+                    tablero[_posicion.X, _posicion.Y + 1] == null!)
+                {
+                    mov.Add(new Posicion(_posicion.X, _posicion.Y + 1));
+                }
+                
+                // Se verifica si se puede comer una pieza en diagonal
+                if (Posicion.PosicionValida(_posicion.X + 1, _posicion.Y + 1) &&
+                    tablero[_posicion.X + 1, _posicion.Y + 1] != null!)
+                {
+                    mov.Add(tablero[_posicion.X + 1, _posicion.Y + 1].ColorPieza() != ColorPieza()
+                        ? new Posicion(_posicion.X + 1, _posicion.Y + 1)
+                        : null);
+                }
+
+                // Lo mismo en la otra esquina
+                if (Posicion.PosicionValida(_posicion.X - 1, _posicion.Y + 1) &&
+                    tablero[_posicion.X - 1, _posicion.Y + 1] != null!)
+                {
+                    mov.Add(tablero[_posicion.X - 1, _posicion.Y + 1].ColorPieza() != ColorPieza()
+                        ? new Posicion(_posicion.X - 1, _posicion.Y + 1)
+                        : null);
+                }
             }
-        }else 
+        }
+        else
         {
             if (!_direccion)
-                mov.Add(Posicion.CrearPosicionValida(_posicion.X, _posicion.Y - 1));
+            {
+                // Movimiento hacia delante
+                if (Posicion.PosicionValida(_posicion.X, _posicion.Y - 1) &&
+                    tablero[_posicion.X, _posicion.Y - 1] == null!)
+                {
+                    mov.Add(new Posicion(_posicion.X, _posicion.Y - 1));
+                }
+
+                // Se verifica si se puede comer una pieza en diagonal
+                if (Posicion.PosicionValida(_posicion.X + 1, _posicion.Y - 1) &&
+                    tablero[_posicion.X + 1, _posicion.Y - 1] != null!)
+                {
+                    mov.Add(tablero[_posicion.X + 1, _posicion.Y - 1].ColorPieza() != ColorPieza()
+                        ? new Posicion(_posicion.X + 1, _posicion.Y - 1)
+                        : null);
+                }
+
+                // Lo mismo en la otra esquina
+                if (Posicion.PosicionValida(_posicion.X - 1, _posicion.Y - 1) &&
+                    tablero[_posicion.X - 1, _posicion.Y - 1] != null!)
+                {
+                    mov.Add(tablero[_posicion.X - 1, _posicion.Y - 1].ColorPieza() != ColorPieza()
+                        ? new Posicion(_posicion.X - 1, _posicion.Y - 1)
+                        : null);
+                }
+            }
             else
-                mov.Add(Posicion.CrearPosicionValida(_posicion.X, _posicion.Y + 1));
-        }*/
-        
+            {
+                // Movimiento hacia delante
+                if (Posicion.PosicionValida(_posicion.X, _posicion.Y + 1) &&
+                    tablero[_posicion.X, _posicion.Y + 1] == null!)
+                {
+                    mov.Add(new Posicion(_posicion.X, _posicion.Y + 1));
+                }
+
+                // Se verifica si se puede comer una pieza en diagonal
+                if (Posicion.PosicionValida(_posicion.X + 1, _posicion.Y + 1) &&
+                    tablero[_posicion.X + 1, _posicion.Y + 1] != null!)
+                {
+                    mov.Add(tablero[_posicion.X + 1, _posicion.Y + 1].ColorPieza() != ColorPieza()
+                        ? new Posicion(_posicion.X + 1, _posicion.Y + 1)
+                        : null);
+                }
+
+                // Lo mismo en la otra esquina
+                if (Posicion.PosicionValida(_posicion.X - 1, _posicion.Y + 1) &&
+                    tablero[_posicion.X - 1, _posicion.Y + 1] != null!)
+                {
+                    mov.Add(tablero[_posicion.X - 1, _posicion.Y + 1].ColorPieza() != ColorPieza()
+                        ? new Posicion(_posicion.X - 1, _posicion.Y + 1)
+                        : null);
+                }
+            }
+        }
+
         mov.RemoveAll(item => item == null);
         return mov;
     }
 
-    public bool EsObjetivo()
-    {
-        return _objetivo;
-    }
-
     public String TipoPiezaUniCode()
     {
-        if ( _color== Color.Blanco)
+        if (_color == Color.Blanco)
         {
             return "\u2659";
         }
@@ -71,7 +170,7 @@ public class Peon: IPieza
         }
     }
 
-    public Color CualColor()
+    public Color ColorPieza()
     {
         return _color;
     }
@@ -99,11 +198,5 @@ public class Peon: IPieza
     {
         get => _direccion;
         set => _direccion = value;
-    }
-
-    public bool Objetivo
-    {
-        get => _objetivo;
-        set => _objetivo = value;
     }
 }

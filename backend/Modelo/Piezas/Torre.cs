@@ -31,7 +31,7 @@ public class Torre : IPieza
                 {
                     mov.Add(new Posicion(_posicion.X-i,_posicion.Y));
                 }
-                else if(tablero[_posicion.X-i,_posicion.Y].CualColor() != CualColor())
+                else if(tablero[_posicion.X-i,_posicion.Y].ColorPieza() != ColorPieza())
                 {
                     mov.Add(new Posicion(_posicion.X-i,_posicion.Y));
                     break;
@@ -50,7 +50,7 @@ public class Torre : IPieza
                 {
                     mov.Add(new Posicion(_posicion.X+i,_posicion.Y));
                 }
-                else if(tablero[_posicion.X+i,_posicion.Y].CualColor() != CualColor())
+                else if(tablero[_posicion.X+i,_posicion.Y].ColorPieza() != ColorPieza())
                 {
                     mov.Add(new Posicion(_posicion.X+i,_posicion.Y));
                     break;
@@ -69,7 +69,7 @@ public class Torre : IPieza
                 {
                     mov.Add(new Posicion(_posicion.X,_posicion.Y+i));
                 }
-                else if(tablero[_posicion.X,_posicion.Y+i].CualColor() != CualColor())
+                else if(tablero[_posicion.X,_posicion.Y+i].ColorPieza() != ColorPieza())
                 {
                     mov.Add(new Posicion(_posicion.X,_posicion.Y+i));
                     break;
@@ -88,7 +88,7 @@ public class Torre : IPieza
                 {
                     mov.Add(new Posicion(_posicion.X,_posicion.Y-i));
                 }
-                else if(tablero[_posicion.X,_posicion.Y-i].CualColor() != CualColor())
+                else if(tablero[_posicion.X,_posicion.Y-i].ColorPieza() != ColorPieza())
                 {
                     mov.Add(new Posicion(_posicion.X,_posicion.Y-i));
                     break;
@@ -102,7 +102,7 @@ public class Torre : IPieza
         return mov;
     }
     
-    public Color CualColor()
+    public Color ColorPieza()
     {
         return _color;
     }

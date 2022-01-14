@@ -15,25 +15,30 @@ public class Torre : IPieza
 
     public void Mover(Posicion posicion)
     {
+        if (_primerMovimiento)
+        {
+            _primerMovimiento = false;
+        }
         _posicion = posicion;
+        
     }
-    
+
     public List<Posicion?> Movimientos(IPieza[,] tablero)
     {
         List<Posicion?> mov = new List<Posicion?>();
-        
+
         // Se ejecutan 4 for loops para verificar movimientos posibles en las 4 direcciones.
         for (int i = 1; i < 8; i++)
         {
-            if (Posicion.PosicionValida(_posicion.X-i,_posicion.Y))
+            if (Posicion.PosicionValida(_posicion.X - i, _posicion.Y))
             {
-                if (tablero[_posicion.X-i,_posicion.Y]==null)
+                if (tablero[_posicion.X - i, _posicion.Y] == null!)
                 {
-                    mov.Add(new Posicion(_posicion.X-i,_posicion.Y));
+                    mov.Add(new Posicion(_posicion.X - i, _posicion.Y));
                 }
-                else if(tablero[_posicion.X-i,_posicion.Y].ColorPieza() != ColorPieza())
+                else if (tablero[_posicion.X - i, _posicion.Y].ColorPieza() != ColorPieza())
                 {
-                    mov.Add(new Posicion(_posicion.X-i,_posicion.Y));
+                    mov.Add(new Posicion(_posicion.X - i, _posicion.Y));
                     break;
                 }
                 else
@@ -42,17 +47,18 @@ public class Torre : IPieza
                 }
             }
         }
+
         for (int i = 1; i < 8; i++)
         {
-            if (Posicion.PosicionValida(_posicion.X+i,_posicion.Y))
+            if (Posicion.PosicionValida(_posicion.X + i, _posicion.Y))
             {
-                if (tablero[_posicion.X+i,_posicion.Y]==null)
+                if (tablero[_posicion.X + i, _posicion.Y] == null!)
                 {
-                    mov.Add(new Posicion(_posicion.X+i,_posicion.Y));
+                    mov.Add(new Posicion(_posicion.X + i, _posicion.Y));
                 }
-                else if(tablero[_posicion.X+i,_posicion.Y].ColorPieza() != ColorPieza())
+                else if (tablero[_posicion.X + i, _posicion.Y].ColorPieza() != ColorPieza())
                 {
-                    mov.Add(new Posicion(_posicion.X+i,_posicion.Y));
+                    mov.Add(new Posicion(_posicion.X + i, _posicion.Y));
                     break;
                 }
                 else
@@ -61,17 +67,18 @@ public class Torre : IPieza
                 }
             }
         }
+
         for (int i = 1; i < 8; i++)
         {
-            if (Posicion.PosicionValida(_posicion.X,_posicion.Y+i))
+            if (Posicion.PosicionValida(_posicion.X, _posicion.Y + i))
             {
-                if (tablero[_posicion.X,_posicion.Y+i]==null)
+                if (tablero[_posicion.X, _posicion.Y + i] == null!)
                 {
-                    mov.Add(new Posicion(_posicion.X,_posicion.Y+i));
+                    mov.Add(new Posicion(_posicion.X, _posicion.Y + i));
                 }
-                else if(tablero[_posicion.X,_posicion.Y+i].ColorPieza() != ColorPieza())
+                else if (tablero[_posicion.X, _posicion.Y + i].ColorPieza() != ColorPieza())
                 {
-                    mov.Add(new Posicion(_posicion.X,_posicion.Y+i));
+                    mov.Add(new Posicion(_posicion.X, _posicion.Y + i));
                     break;
                 }
                 else
@@ -80,17 +87,18 @@ public class Torre : IPieza
                 }
             }
         }
+
         for (int i = 1; i < 8; i++)
         {
-            if (Posicion.PosicionValida(_posicion.X,_posicion.Y-i))
+            if (Posicion.PosicionValida(_posicion.X, _posicion.Y - i))
             {
-                if (tablero[_posicion.X,_posicion.Y-i]==null)
+                if (tablero[_posicion.X, _posicion.Y - i] == null!)
                 {
-                    mov.Add(new Posicion(_posicion.X,_posicion.Y-i));
+                    mov.Add(new Posicion(_posicion.X, _posicion.Y - i));
                 }
-                else if(tablero[_posicion.X,_posicion.Y-i].ColorPieza() != ColorPieza())
+                else if (tablero[_posicion.X, _posicion.Y - i].ColorPieza() != ColorPieza())
                 {
-                    mov.Add(new Posicion(_posicion.X,_posicion.Y-i));
+                    mov.Add(new Posicion(_posicion.X, _posicion.Y - i));
                     break;
                 }
                 else
@@ -99,17 +107,23 @@ public class Torre : IPieza
                 }
             }
         }
+
         return mov;
     }
-    
+
     public Color ColorPieza()
     {
         return _color;
     }
+    
+    public string TipoPieza()
+    {
+        return "Torre";
+    }
 
     public string TipoPiezaUniCode()
     {
-        if ( _color== Color.Blanco)
+        if (_color == Color.Blanco)
         {
             return "\u2656";
         }

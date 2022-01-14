@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using backend.Modelo;
 
-namespace backend.GUI;
+namespace backend.ConsoleView;
 
 public class VistaTablero
 {

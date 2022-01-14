@@ -18,17 +18,89 @@ public class Alfil : IPieza
 
     public List<Posicion?> Movimientos(IPieza[,] tablero)
     {
-        List<Posicion?>? mov = new List<Posicion?>();
+        List<Posicion?> mov = new List<Posicion?>();
+        
+        // Se verifican los movimientos posibles en las cuatro direcciones en diagonal.
+        for (int i = 1; i < 8; i++)
+        {
+            if (Posicion.PosicionValida(_posicion.X + i, _posicion.Y + i))
+            {
+                if (tablero[_posicion.X + i, _posicion.Y + i] == null!)
+                {
+                    mov.Add(new Posicion(_posicion.X + i, _posicion.Y + i));
+                }
+                else if (tablero[_posicion.X + i, _posicion.Y + i].ColorPieza() != ColorPieza())
+                {
+                    mov.Add(new Posicion(_posicion.X + i, _posicion.Y + i));
+                    break;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
         
         for (int i = 1; i < 8; i++)
         {
-            /*mov.Add(Posicion.CrearPosicionValida(_posicion.X+i,_posicion.Y+i));
-            mov.Add(Posicion.CrearPosicionValida(_posicion.X+i,_posicion.Y-i));
-            mov.Add(Posicion.CrearPosicionValida(_posicion.X-i,_posicion.Y+i));
-            mov.Add(Posicion.CrearPosicionValida(_posicion.X-i,_posicion.Y-i));*/
+            if (Posicion.PosicionValida(_posicion.X + i, _posicion.Y - i))
+            {
+                if (tablero[_posicion.X + i, _posicion.Y - i] == null!)
+                {
+                    mov.Add(new Posicion(_posicion.X + i, _posicion.Y - i));
+                }
+                else if (tablero[_posicion.X + i, _posicion.Y - i].ColorPieza() != ColorPieza())
+                {
+                    mov.Add(new Posicion(_posicion.X + i, _posicion.Y - i));
+                    break;
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
         
-        mov.RemoveAll(item => item == null);
+        for (int i = 1; i < 8; i++)
+        {
+            if (Posicion.PosicionValida(_posicion.X - i, _posicion.Y + i))
+            {
+                if (tablero[_posicion.X - i, _posicion.Y + i] == null!)
+                {
+                    mov.Add(new Posicion(_posicion.X - i, _posicion.Y + i));
+                }
+                else if (tablero[_posicion.X - i, _posicion.Y + i].ColorPieza() != ColorPieza())
+                {
+                    mov.Add(new Posicion(_posicion.X - i, _posicion.Y + i));
+                    break;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+        
+        for (int i = 1; i < 8; i++)
+        {
+            if (Posicion.PosicionValida(_posicion.X - i, _posicion.Y - i))
+            {
+                if (tablero[_posicion.X - i, _posicion.Y - i] == null!)
+                {
+                    mov.Add(new Posicion(_posicion.X - i, _posicion.Y - i));
+                }
+                else if (tablero[_posicion.X - i, _posicion.Y - i].ColorPieza() != ColorPieza())
+                {
+                    mov.Add(new Posicion(_posicion.X - i, _posicion.Y - i));
+                    break;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+        
         return mov;
     }
     
@@ -37,6 +109,11 @@ public class Alfil : IPieza
         return _color;
     }
 
+    public string TipoPieza()
+    {
+        return "Alfil";
+    }
+    
     public string TipoPiezaUniCode()
     {
         if ( _color== Color.Blanco)

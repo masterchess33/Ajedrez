@@ -6,6 +6,8 @@ public interface IPieza
 
     public List<Posicion?> Movimientos(IPieza[,] tablero);
 
+    public string TipoPieza();
+    
     public String TipoPiezaUniCode();
 
     public Color ColorPieza();

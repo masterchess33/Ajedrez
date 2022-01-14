@@ -158,6 +158,11 @@ public class Peon : IPieza
         return mov;
     }
 
+    public string TipoPieza()
+    {
+        return "Peon";
+    }
+    
     public String TipoPiezaUniCode()
     {
         if (_color == Color.Blanco)

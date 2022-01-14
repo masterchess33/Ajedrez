@@ -15,6 +15,10 @@ public class Rey : IPieza
 
     public void Mover(Posicion posicion)
     {
+        if (_primerMovimiento)
+        {
+            _primerMovimiento = false;
+        }
         _posicion = posicion;
     }
 
@@ -40,6 +44,11 @@ public class Rey : IPieza
         return _color;
     }
 
+    public string TipoPieza()
+    {
+        return "Rey";
+    }
+    
     public string TipoPiezaUniCode()
     {
         
